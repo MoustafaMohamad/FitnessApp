@@ -1,0 +1,13 @@
+@FitnessCalculationEngine_LocalHostAddress = http://localhost:5201
+@FitnessCalculationEngine_DockerAddress = http://localhost:8080
+@FitnessCalculationEngine_HostAddress = {{FitnessCalculationEngine_LocalHostAddress}}
+
+GET {{FitnessCalculationEngine_HostAddress}}/swagger
+Accept: application/json
+
+###
+
+GET {{FitnessCalculationEngine_HostAddress}}/weatherforecast
+Accept: application/json
+
+###
