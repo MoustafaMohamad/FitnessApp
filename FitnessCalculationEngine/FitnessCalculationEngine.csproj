@@ -51,7 +51,6 @@
 
   <ItemGroup>
     <Folder Include="Entities\" />
-    <Folder Include="Features\UserFitnessStatsFeature\Queries\" />
   </ItemGroup>
 
 </Project>

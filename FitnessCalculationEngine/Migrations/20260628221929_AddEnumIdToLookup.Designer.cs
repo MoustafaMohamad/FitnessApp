@@ -4,6 +4,7 @@ using FitnessCalculationEngine.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FitnessCalculationEngine.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20260628221929_AddEnumIdToLookup")]
+    partial class AddEnumIdToLookup
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -263,9 +266,6 @@ namespace FitnessCalculationEngine.Migrations
                     b.Property<long>("Id")
                         .HasColumnType("bigint");
 
-                    b.Property<int>("EnumId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -279,25 +279,21 @@ namespace FitnessCalculationEngine.Migrations
                         new
                         {
                             Id = 100000000000000001L,
-                            EnumId = 1,
                             Name = "Gender"
                         },
                         new
                         {
                             Id = 100000000000000002L,
-                            EnumId = 2,
                             Name = "ActivityLevel"
                         },
                         new
                         {
                             Id = 100000000000000003L,
-                            EnumId = 3,
                             Name = "Goal"
                         },
                         new
                         {
                             Id = 100000000000000004L,
-                            EnumId = 4,
                             Name = "Status"
                         });
                 });

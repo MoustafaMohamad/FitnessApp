@@ -1,12 +1,10 @@
-namespace FitnessCalculationEngine.Entities
+namespace FitnessCalculationEngine.Features.CalculatedMetricsFeature.ViewModels
 {
-    public class CalculatedMetrics : BaseInformation
+    public class CalculateMetricsResponseViewModel
     {
-        public long UserId { get; set; }
         public double BMR { get; set; }
         public double TDEE { get; set; }
         public double CalorieTarget { get; set; }
         public long StatusId { get; set; }
-        public Lookup Status { get; set; }
     }
 }

@@ -4,6 +4,7 @@ using FitnessCalculationEngine.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FitnessCalculationEngine.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20260628220613_AddStatusLookup")]
+    partial class AddStatusLookup
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -126,9 +129,6 @@ namespace FitnessCalculationEngine.Migrations
                     b.Property<long>("CategoryId")
                         .HasColumnType("bigint");
 
-                    b.Property<int>("EnumId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -146,113 +146,99 @@ namespace FitnessCalculationEngine.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 200000000000000001L,
-                            CategoryId = 100000000000000001L,
-                            EnumId = 1,
+                            Id = 1L,
+                            CategoryId = 1L,
                             Name = "Male",
                             Value = 1.0
                         },
                         new
                         {
-                            Id = 200000000000000002L,
-                            CategoryId = 100000000000000001L,
-                            EnumId = 2,
+                            Id = 2L,
+                            CategoryId = 1L,
                             Name = "Female",
                             Value = 2.0
                         },
                         new
                         {
-                            Id = 200000000000000003L,
-                            CategoryId = 100000000000000002L,
-                            EnumId = 3,
+                            Id = 3L,
+                            CategoryId = 2L,
                             Name = "Rookie",
                             Value = 1.2
                         },
                         new
                         {
-                            Id = 200000000000000004L,
-                            CategoryId = 100000000000000002L,
-                            EnumId = 4,
+                            Id = 4L,
+                            CategoryId = 2L,
                             Name = "Beginner",
                             Value = 1.375
                         },
                         new
                         {
-                            Id = 200000000000000005L,
-                            CategoryId = 100000000000000002L,
-                            EnumId = 5,
+                            Id = 5L,
+                            CategoryId = 2L,
                             Name = "Intermediate",
                             Value = 1.55
                         },
                         new
                         {
-                            Id = 200000000000000006L,
-                            CategoryId = 100000000000000002L,
-                            EnumId = 6,
+                            Id = 6L,
+                            CategoryId = 2L,
                             Name = "Advance",
                             Value = 1.7250000000000001
                         },
                         new
                         {
-                            Id = 200000000000000007L,
-                            CategoryId = 100000000000000002L,
-                            EnumId = 7,
+                            Id = 7L,
+                            CategoryId = 2L,
                             Name = "TrueBeast",
                             Value = 1.8999999999999999
                         },
                         new
                         {
-                            Id = 200000000000000008L,
-                            CategoryId = 100000000000000003L,
-                            EnumId = 8,
+                            Id = 8L,
+                            CategoryId = 3L,
                             Name = "Lose Weight",
                             Value = -500.0
                         },
                         new
                         {
-                            Id = 200000000000000009L,
-                            CategoryId = 100000000000000003L,
-                            EnumId = 9,
+                            Id = 9L,
+                            CategoryId = 3L,
                             Name = "Gain Weight",
                             Value = 300.0
                         },
                         new
                         {
-                            Id = 200000000000000010L,
-                            CategoryId = 100000000000000003L,
-                            EnumId = 10,
+                            Id = 10L,
+                            CategoryId = 3L,
                             Name = "Gain More Flexible",
                             Value = 150.0
                         },
                         new
                         {
-                            Id = 200000000000000011L,
-                            CategoryId = 100000000000000003L,
-                            EnumId = 11,
+                            Id = 11L,
+                            CategoryId = 3L,
                             Name = "Get Fitter/Learn the Basic",
                             Value = 0.0
                         },
                         new
                         {
-                            Id = 200000000000000012L,
-                            CategoryId = 100000000000000004L,
-                            EnumId = 12,
+                            Id = 12L,
+                            CategoryId = 4L,
                             Name = "Weak",
                             Value = 0.0
                         },
                         new
                         {
-                            Id = 200000000000000013L,
-                            CategoryId = 100000000000000004L,
-                            EnumId = 13,
+                            Id = 13L,
+                            CategoryId = 4L,
                             Name = "Normal",
                             Value = 0.0
                         },
                         new
                         {
-                            Id = 200000000000000014L,
-                            CategoryId = 100000000000000004L,
-                            EnumId = 14,
+                            Id = 14L,
+                            CategoryId = 4L,
                             Name = "Hard",
                             Value = 0.0
                         });
@@ -262,9 +248,6 @@ namespace FitnessCalculationEngine.Migrations
                 {
                     b.Property<long>("Id")
                         .HasColumnType("bigint");
-
-                    b.Property<int>("EnumId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -278,26 +261,22 @@ namespace FitnessCalculationEngine.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 100000000000000001L,
-                            EnumId = 1,
+                            Id = 1L,
                             Name = "Gender"
                         },
                         new
                         {
-                            Id = 100000000000000002L,
-                            EnumId = 2,
+                            Id = 2L,
                             Name = "ActivityLevel"
                         },
                         new
                         {
-                            Id = 100000000000000003L,
-                            EnumId = 3,
+                            Id = 3L,
                             Name = "Goal"
                         },
                         new
                         {
-                            Id = 100000000000000004L,
-                            EnumId = 4,
+                            Id = 4L,
                             Name = "Status"
                         });
                 });

@@ -12,7 +12,7 @@ namespace FitnessCalculationEngine.Features.UserFitnessStatsFeature.EndPoint
 {
     [Route("api/v1/fitness/weight-goal-activity/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class UserFitnessStatsController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -22,12 +22,11 @@ namespace FitnessCalculationEngine.Features.UserFitnessStatsFeature.EndPoint
         }
 
         [HttpPost]
-        public async Task<EndpointResponse<bool>> SubmitUserFitnessStats([FromBody] SubmitUserFitnessStatsViewModel submitUserFitnessStatsViewModel)
+        public async Task<EndpointResponse<bool>> SubmitUserFitnessStats([FromBody] SubmitUserFitnessStatsViewModel submitUserFitnessStatsViewModel,CancellationToken cancellationToken)
         {
             var command = submitUserFitnessStatsViewModel.Adapt<SubmitUserFitnessStatsCommand>();
             
-            var result = await _mediator.Send(command);
-
+            var result = await _mediator.Send(command, cancellationToken);
             return EndpointResponse<bool>.Success(result);
         }
     }

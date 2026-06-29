@@ -15,6 +15,8 @@ namespace FitnessCalculationEngine.Common.BaseHandler
         protected readonly Context _context;
         protected readonly IdGen.IIdGenerator<long> _snowflake;
         protected readonly CurrentUserService _currentUserService;
+        protected readonly EnumLookupCache _enumLookupCache;
+
 
         public BaseHandler(BaseParameters baseParameters)
         {
@@ -22,6 +24,7 @@ namespace FitnessCalculationEngine.Common.BaseHandler
             _context = baseParameters._context;
             _snowflake = baseParameters._snowflake;
             _currentUserService = baseParameters._currentUserService;
+            _enumLookupCache = baseParameters._enumLookupCache;
         }
 
         public abstract Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken);

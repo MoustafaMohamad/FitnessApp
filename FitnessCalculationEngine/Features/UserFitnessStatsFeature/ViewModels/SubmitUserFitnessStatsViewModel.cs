@@ -1,5 +1,5 @@
+
 using FitnessCalculationEngine.Common.Enums;
-using FluentValidation;
 
 namespace FitnessCalculationEngine.Features.UserFitnessStatsFeature.ViewModels
 {
@@ -10,8 +10,8 @@ namespace FitnessCalculationEngine.Features.UserFitnessStatsFeature.ViewModels
         public double Weight { get; set; }
         public double Height { get; set; }
         public int Age { get; set; }
-        public Gender Gender { get; set; }
-        public Goal Goal { get; set; }
-        public ActivityLevel ActivityLevel { get; set; }
+        public LookupEnum GenderId { get; set; }
+        public LookupEnum GoalId { get; set; }
+        public LookupEnum ActivityLevelId { get; set; }
     }
 }

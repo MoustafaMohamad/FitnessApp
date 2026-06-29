@@ -10,13 +10,11 @@ namespace FitnessCalculationEngine.Common.Behaviors
                                                         
 
     {
-        private readonly CancellationToken _cancellationToken;
         private readonly IEnumerable<IValidator<TRequest>> _validators;
 
-        public ValidationPipelineBehavior(IEnumerable<IValidator<TRequest>> validators, CancellationToken cancellationToken)
+        public ValidationPipelineBehavior(IEnumerable<IValidator<TRequest>> validators)
         {
             _validators = validators;
-            _cancellationToken = cancellationToken;
         }
         public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
         {
@@ -25,7 +23,7 @@ namespace FitnessCalculationEngine.Common.Behaviors
                 var context = new ValidationContext<TRequest>(request);
 
                 var validationResults = await Task.WhenAll(
-                    _validators.Select(validator => validator.ValidateAsync(context, _cancellationToken)));
+                    _validators.Select(validator => validator.ValidateAsync(context, cancellationToken)));
                 if (validationResults.Any(x => !x.IsValid))
                 {
                     var errors = new StringBuilder();

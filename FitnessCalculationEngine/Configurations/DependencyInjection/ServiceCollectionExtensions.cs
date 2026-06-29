@@ -1,5 +1,7 @@
+using FitnessCalculationEngine.Common.BaseHandler;
 using FitnessCalculationEngine.Common.Helpers;
 using FitnessCalculationEngine.Common.Middlewares;
+using FitnessCalculationEngine.Common.Services;
 using FitnessCalculationEngine.Data.Contexts;
 
 namespace ProductCatalogAPI.Configurations.DependencyInjection
@@ -8,14 +10,13 @@ namespace ProductCatalogAPI.Configurations.DependencyInjection
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
-            services.AddScoped<Context>();
-            services.AddScoped<FitnessCalculationEngine.Common.Services.ICurrentUserService, FitnessCalculationEngine.Common.Services.CurrentUserService>();
-
+            services.AddMemoryCache();
+            services.AddHttpContextAccessor(); // Required for CurrentUserService to work!
+            services.AddScoped<CurrentUserService>();
+            services.AddScoped<BaseParameters>();
+            services.AddScoped<EnumLookupCache>();
             services.AddScoped<GlobalErrorHandlerMiddleware>();
-            services.AddScoped<TransactionMiddleware>();
             services.AddScoped<ValidationExceptionHandlingMiddleware>();
-            services.AddScoped<CancellationTokenCaptureMiddleware>();
-            services.AddScoped<CancellationTokenAccessor>();
 
             // Register the standard IdGen Snowflake ID Generator (originally developed by Twitter)
             // Generator ID 0 is used as the machine/worker ID.

@@ -13,11 +13,9 @@ namespace FitnessCalculationEngine.Data.ModelConfiguration
             // Assuming you are using the Snowflake ID generator for this as well
             builder.Property(x => x.Id).ValueGeneratedNever();
 
-            // Map the enums as strings in the database instead of integers
-            builder.Property(x => x.Gender).HasConversion<string>().HasMaxLength(20);
-            builder.Property(x => x.ActivityLevel).HasConversion<string>().HasMaxLength(20);
-
-            builder.Property(x => x.Goal).HasConversion<string>().HasMaxLength(50);
+            builder.HasOne(x => x.Gender).WithMany().HasForeignKey(x => x.GenderId).OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(x => x.ActivityLevel).WithMany().HasForeignKey(x => x.ActivityLevelId).OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(x => x.Goal).WithMany().HasForeignKey(x => x.GoalId).OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

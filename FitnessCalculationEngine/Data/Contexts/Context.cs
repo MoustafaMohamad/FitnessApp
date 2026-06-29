@@ -8,7 +8,7 @@ namespace FitnessCalculationEngine.Data.Contexts
     {
         private readonly CurrentUserService _currentUserService;
 
-        public Context(DbContextOptions<Context> options,CurrentUserService currentUserService) : base(options)
+        public Context(DbContextOptions<Context> options, CurrentUserService currentUserService) : base(options)
         {
             _currentUserService = currentUserService;
         }
@@ -38,6 +38,7 @@ namespace FitnessCalculationEngine.Data.Contexts
         public DbSet<FitnessPlanConfig> FitnessPlanConfigs { get; set; }
         public DbSet<UserAssignedPlan> UserAssignedPlans { get; set; }
         public DbSet<UserPlanHistory> UserPlanHistories { get; set; }
+        public DbSet<Lookup> Lookups { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

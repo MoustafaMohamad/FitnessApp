@@ -28,7 +28,6 @@ namespace FitnessCalculationEngine
                 .AddMapsterConfiguration()
                 .AddDBContext(builder.Configuration)
                 .AddApplicationServices()
-                .AddAuthenticationConfiguration(builder.Configuration)
                 .AddCapConfiguration(builder.Configuration)
                 .AddSwaggerConfiguration()
                 .AddJwtConfiguration(builder.Configuration);
@@ -62,7 +61,6 @@ namespace FitnessCalculationEngine
             app.UseAuthorization();
 
             app.UseMiddleware<ValidationExceptionHandlingMiddleware>();
-            app.UseMiddleware<CancellationTokenCaptureMiddleware>();
 
             app.UseHttpsRedirection();
             app.MapControllers();

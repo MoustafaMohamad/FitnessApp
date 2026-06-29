@@ -1,4 +1,7 @@
-﻿using FitnessCalculationEngine.Common.BaseHandler;
+
+using FitnessCalculationEngine.Common.BaseHandler;
+using FitnessCalculationEngine.Common.Enums;
+using FitnessCalculationEngine.Common.Services;
 using FitnessCalculationEngine.Entities;
 using FitnessCalculationEngine.Features.UserFitnessStatsFeature.command;
 
@@ -12,22 +15,22 @@ namespace FitnessCalculationEngine.Features.UserFitnessStatsFeature.Handler
 
         public override async Task<bool> Handle(SubmitUserFitnessStatsCommand request, CancellationToken cancellationToken)
         {
+
             var entity = new UserFitnessStats
             {
                 Id = _snowflake.CreateId(),
-                ActivityLevel = request.ActivityLevel,
                 Age = request.Age,
-                Gender = request.Gender,
-                Goal = request.Goal,
                 Height = request.Height,
                 Weight = request.Weight,
+                GenderId = await _enumLookupCache.GetLookupId(request.Gender),
+                ActivityLevelId = await _enumLookupCache.GetLookupId(request.ActivityLevel),
+                GoalId = await _enumLookupCache.GetLookupId(request.Goal),
                 UserId = _currentUserService.UserId
-
+                
 
             };
+            
             await _context.UserFitnessStats.AddAsync(entity, cancellationToken);
-
-            await _context.SaveChangesAsync();
 
             return true;
         }

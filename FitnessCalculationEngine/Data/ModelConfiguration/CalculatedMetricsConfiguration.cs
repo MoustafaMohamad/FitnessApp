@@ -11,8 +11,9 @@ namespace FitnessCalculationEngine.Data.ModelConfiguration
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedNever();
 
-            builder.Property(x => x.Status).HasMaxLength(20);
-
+            builder.HasOne(x => x.Status)
+               .WithMany()
+               .HasForeignKey(x => x.StatusId);
         }
     }
 }

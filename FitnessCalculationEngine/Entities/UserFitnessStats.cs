@@ -1,3 +1,5 @@
+using FitnessCalculationEngine.Common.Enums;
+
 namespace FitnessCalculationEngine.Entities
 {
     public class UserFitnessStats : BaseInformation
@@ -6,9 +8,12 @@ namespace FitnessCalculationEngine.Entities
         public double Weight { get; set; }
         public double Height { get; set; }
         public int Age { get; set; }
-        public Common.Enums.Gender Gender { get; set; }
-        public Common.Enums.Goal Goal { get; set; }
-        public Common.Enums.ActivityLevel ActivityLevel { get; set; }
+        public long GenderId { get; set; }
+        public Lookup Gender { get; set; }
+        public long GoalId { get; set; }
+        public Lookup Goal { get; set; }
+        public long ActivityLevelId { get; set; }
+        public Lookup ActivityLevel { get; set; }
 
     }
 }

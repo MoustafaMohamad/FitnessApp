@@ -11,6 +11,7 @@ namespace ProductCatalogAPI.Configurations.DependencyInjection
             {
                 cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
                 cfg.AddOpenBehavior(typeof(ValidationPipelineBehavior<,>));
+                cfg.AddOpenBehavior(typeof(TransactionMiddleware<,>));
             });
             return services;
         }

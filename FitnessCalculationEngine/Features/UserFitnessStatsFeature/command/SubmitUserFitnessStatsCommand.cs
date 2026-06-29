@@ -1,6 +1,8 @@
 using FitnessCalculationEngine.Common.Enums;
+using FitnessCalculationEngine.Common.Interface;
 using FluentValidation;
 using MediatR;
+using System.Windows.Input;
 
 namespace FitnessCalculationEngine.Features.UserFitnessStatsFeature.command
 {
@@ -8,9 +10,9 @@ namespace FitnessCalculationEngine.Features.UserFitnessStatsFeature.command
         double Weight, 
         double Height, 
         int Age, 
-        Gender Gender, 
-        Goal Goal, 
-        ActivityLevel ActivityLevel) : IRequest<bool>;
+        LookupEnum Gender, 
+        LookupEnum Goal, 
+        LookupEnum ActivityLevel) : ICommand<bool>;
 
     public class SubmitUserFitnessStatsCommandValidator : AbstractValidator<SubmitUserFitnessStatsCommand>
     {
@@ -26,13 +28,11 @@ namespace FitnessCalculationEngine.Features.UserFitnessStatsFeature.command
                 .InclusiveBetween(140.0, 220.0).WithMessage("Height must be between 140 and 220 cm. Height outside the allowed range.");
 
             RuleFor(x => x.Gender)
-                .IsInEnum().WithMessage("Gender not Male or Female.");
-
+                .IsInEnum().WithMessage("GenderId is required.");
             RuleFor(x => x.Goal)
-                .IsInEnum().WithMessage("Goal not in the allowed enum list.");
-
+                .IsInEnum().WithMessage("GoalId is required.");
             RuleFor(x => x.ActivityLevel)
-                .IsInEnum().WithMessage("ActivityLevel not in the allowed enum list.");
+                .IsInEnum().WithMessage("ActivityLevelId is required.");
         }
     }
 }
