@@ -17,6 +17,7 @@ namespace FitnessCalculationEngine.CapConsumers
         public async Task HandleReCalculatedFitnessStatsEvent(long userId)
         {
             await _mediator.Send(new AssignFitnessPlanOrachestrator(userId));
+
         }
     }
 }
