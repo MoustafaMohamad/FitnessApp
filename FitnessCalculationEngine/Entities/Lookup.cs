@@ -7,7 +7,6 @@ namespace FitnessCalculationEngine.Entities
         public LookupEnum Id { get; set; }
         public string Name { get; set; }
         public LookupCategoryEnum CategoryId { get; set; }
-        public LookupCategory Category { get; set; }
         public double Value { get; set; }
     }
 }

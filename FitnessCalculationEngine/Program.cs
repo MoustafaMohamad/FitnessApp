@@ -37,11 +37,19 @@ namespace FitnessCalculationEngine
 
             #region Serilog Configuration 
 
-               Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(builder.Configuration)
-               .WriteTo.MSSqlServer(connectionString: builder.Configuration.GetConnectionString("DefaultConnection"), restrictedToMinimumLevel: LogEventLevel.Information,
-               sinkOptions: new MSSqlServerSinkOptions { TableName = "Logs", AutoCreateSqlTable = true, AutoCreateSqlDatabase = true })
-               .WriteTo.Seq("http://localhost:5341/")
-               .CreateLogger();
+            try
+            {
+                Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(builder.Configuration)
+                .WriteTo.MSSqlServer(connectionString: builder.Configuration.GetConnectionString("DefaultConnection"), restrictedToMinimumLevel: LogEventLevel.Information,
+                sinkOptions: new MSSqlServerSinkOptions { TableName = "Logs", AutoCreateSqlTable = true, AutoCreateSqlDatabase = true })
+                .WriteTo.Seq("http://localhost:5341/")
+                .CreateLogger();
+            }
+            catch (Exception ex)
+            {
+                Log.Logger = new LoggerConfiguration().WriteTo.Console().CreateLogger();
+                Console.WriteLine("Warning: Serilog DB sink failed to initialize. Falling back to Console logger. Error: " + ex.Message);
+            }
 
             builder.Host.UseSerilog();
             #endregion

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace FitnessCalculationEngine.Features.Common.Data
+namespace FitnessCalculationEngine.Common.Enums
 {
     public enum ErrorCode
     {

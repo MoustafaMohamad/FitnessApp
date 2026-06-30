@@ -1,4 +1,4 @@
-﻿namespace FitnessCalculationEngine.Features.Common.Data
+﻿namespace FitnessCalculationEngine.Common.Enums
 {
     public enum LogLevels
     {

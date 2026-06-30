@@ -1,4 +1,4 @@
-using FitnessCalculationEngine.Features.Common.Data;
+using FitnessCalculationEngine.Common.Enums;
 
 namespace FitnessCalculationEngine.Common.Exceptions
 {

@@ -1,5 +1,5 @@
-﻿using FitnessCalculationEngine.Common.Helpers;
-using FitnessCalculationEngine.Features.Common.Data;
+﻿using FitnessCalculationEngine.Common.Enums;
+using FitnessCalculationEngine.Common.Helpers;
 
 namespace FitnessCalculationEngine.Common.ResultPattern
 {

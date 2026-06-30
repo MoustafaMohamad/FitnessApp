@@ -1,7 +1,6 @@
 ﻿using FitnessCalculationEngine.Common.Exceptions;
 using FitnessCalculationEngine.Common.Interface;
 using FitnessCalculationEngine.Data.Contexts;
-using FitnessCalculationEngine.Features.Common.Data;
 using MediatR;
 using Microsoft.EntityFrameworkCore.Storage;
 using System.Data;

@@ -1,6 +1,6 @@
+using FitnessCalculationEngine.Common.Enums;
 using FitnessCalculationEngine.Common.Exceptions;
 using FitnessCalculationEngine.Common.ResultPattern;
-using FitnessCalculationEngine.Features.Common.Data;
 
 namespace FitnessCalculationEngine.Common.Middlewares
 {

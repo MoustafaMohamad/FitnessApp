@@ -13,6 +13,7 @@ namespace FitnessCalculationEngine.Features.Common.Queries
         public LookupEnum GenderEnumId { get; set; }
         public double ActivityFactor { get; set; }
         public double CalorieOffset { get; set; }
+        public string GoalName { get; set; }
     }
 
     public record GetUserStatsQuery(long UserId) : IRequest<RequestResult<UserStatsDto>>;

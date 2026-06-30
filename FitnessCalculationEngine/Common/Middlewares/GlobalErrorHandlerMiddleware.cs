@@ -1,7 +1,7 @@
+using FitnessCalculationEngine.Common.Enums;
 using FitnessCalculationEngine.Common.Exceptions;
 using FitnessCalculationEngine.Common.ResultPattern;
 using FitnessCalculationEngine.Features.Common.AppLogs.Commands;
-using FitnessCalculationEngine.Features.Common.Data;
 using MediatR;
 
 namespace FitnessCalculationEngine.Common.Middlewares

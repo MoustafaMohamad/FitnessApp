@@ -1,4 +1,5 @@
-﻿using FitnessCalculationEngine.Common.Services;
+﻿using DotNetCore.CAP;
+using FitnessCalculationEngine.Common.Services;
 using FitnessCalculationEngine.Data.Contexts;
 using FluentValidation;
 using MediatR;
@@ -9,6 +10,7 @@ namespace FitnessCalculationEngine.Common.BaseHandler
     {
         public readonly IMediator _mediator;
         public readonly IdGen.IIdGenerator<long> _snowflake;
+        public readonly ICapPublisher _capPublisher;
         public readonly Context _context;
         public readonly CurrentUserService _currentUserService;
         public readonly EnumLookupCache _enumLookupCache;

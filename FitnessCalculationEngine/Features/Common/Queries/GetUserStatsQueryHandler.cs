@@ -21,9 +21,10 @@ namespace FitnessCalculationEngine.Features.Common.Queries
                     Weight = u.Weight,
                     Height = u.Height,
                     Age = u.Age,
-                    GenderEnumId = u.Gender.EnumId,
+                    GenderEnumId = u.GenderId,
                     ActivityFactor = u.ActivityLevel.Value,
-                    CalorieOffset = u.Goal.Value
+                    CalorieOffset = u.Goal.Value,
+                    GoalName = u.Goal.Name
                 })
                 .FirstOrDefaultAsync(cancellationToken);
 
