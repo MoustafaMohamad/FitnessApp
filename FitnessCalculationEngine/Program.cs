@@ -1,0 +1,79 @@
+using MapsterMapper;
+using FitnessCalculationEngine.Common.Middlewares;
+using ProductCatalogAPI.Configurations.DependencyInjection;
+using Serilog;
+using Serilog.Events;
+using Serilog.Sinks.MSSqlServer;
+using System.Reflection;
+using FitnessCalculationEngine.Configurations.DependencyInjection;
+namespace FitnessCalculationEngine
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            var builder = WebApplication.CreateBuilder(args);
+
+
+            builder.Services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
+            });
+            builder.Services.AddEndpointsApiExplorer();
+
+
+            builder.Services
+                .AddFluentValidation(Assembly.GetExecutingAssembly())
+                .AddMediatRConfigration()
+                .AddMapsterConfiguration()
+                .AddDBContext(builder.Configuration)
+                .AddApplicationServices()
+                .AddCapConfiguration(builder.Configuration)
+                .AddSwaggerConfiguration()
+                .AddJwtConfiguration(builder.Configuration);
+
+
+            builder.Logging.ClearProviders();
+
+            #region Serilog Configuration 
+
+            try
+            {
+                Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(builder.Configuration)
+                .WriteTo.MSSqlServer(connectionString: builder.Configuration.GetConnectionString("DefaultConnection"), restrictedToMinimumLevel: LogEventLevel.Information,
+                sinkOptions: new MSSqlServerSinkOptions { TableName = "Logs", AutoCreateSqlTable = true, AutoCreateSqlDatabase = true })
+                .WriteTo.Seq("http://localhost:5341/")
+                .CreateLogger();
+            }
+            catch (Exception ex)
+            {
+                Log.Logger = new LoggerConfiguration().WriteTo.Console().CreateLogger();
+                Console.WriteLine("Warning: Serilog DB sink failed to initialize. Falling back to Console logger. Error: " + ex.Message);
+            }
+
+            builder.Host.UseSerilog();
+            #endregion
+
+
+            var app = builder.Build();
+
+
+            // Configure the HTTP request pipeline.
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
+            }
+            app.UseMiddleware<GlobalErrorHandlerMiddleware>();
+            app.UseAuthentication();
+            app.UseAuthorization();
+
+            app.UseMiddleware<ValidationExceptionHandlingMiddleware>();
+
+            app.UseHttpsRedirection();
+            app.MapControllers();
+
+            app.Run();
+        }
+    }
+}
